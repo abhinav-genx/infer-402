@@ -5,32 +5,44 @@ USDC through x402 on Base or Base Sepolia.
 
 ## Install
 
-TypeScript buyer:
+These packages are not published to npm or PyPI yet. Clone the repository and build from source.
 
 ```bash
-npm install @infer402/client
+git clone git@github.com:abhinav-genx/infer-402.git
+cd infer-402
 ```
 
-TypeScript provider:
+TypeScript (buyer `@infer402/client`, provider `@infer402/server`, shared `@infer402/core`):
 
 ```bash
-npm install @infer402/server
+cd typescript
+npm ci
+npm run build
 ```
 
-Python buyer:
+Then consume the workspace packages locally. From another project you can link them, for example:
 
 ```bash
-pip install x402-openai
+# from your project, after building above
+npm install /absolute/path/to/infer-402/typescript/packages/client
+npm install /absolute/path/to/infer-402/typescript/packages/server
 ```
 
-Python provider:
+Or import them directly inside this repo (the examples in `typescript/examples/` do this).
+
+Python (one distribution `x402-openai` with an optional `[server]` extra):
 
 ```bash
-pip install "x402-openai[server]"
+cd python
+python -m venv .venv
+. .venv/bin/activate
+pip install -e .            # buyer only
+pip install -e ".[server]"  # buyer + FastAPI provider gateway
 ```
 
-Packages publish under the `@infer402` npm scope and the `infer402` GitHub org. Confirm the PyPI
-project name is available or choose your organization-specific name.
+Once the packages are published, this will become `npm install @infer402/client` /
+`pip install x402-openai`. Publishing workflows exist in `.github/workflows/` but require an npm
+`@infer402` org, a PyPI project, and the corresponding tokens/OIDC before a `v*` tag can release.
 
 ## Repository map
 
@@ -54,6 +66,8 @@ Both implementations:
 - cap the final settlement at the buyer's authorized maximum.
 
 ## Development
+
+Contributor setup with the full test, lint, and type-check suite:
 
 ```bash
 cd typescript
