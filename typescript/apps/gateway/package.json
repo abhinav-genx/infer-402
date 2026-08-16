@@ -1,0 +1,14 @@
+{
+  "name": "@infer402/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc src/index.ts --outDir dist --rootDir src --target ES2022 --module NodeNext --moduleResolution NodeNext --strict --skipLibCheck",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@infer402/server": "0.1.0"
+  }
+}

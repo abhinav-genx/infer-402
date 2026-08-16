@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/x402-openai/receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "createdAt", "network", "asset", "amountAtomic", "amountUsd", "model",
+    "pricingVersion", "inputTokens", "cachedInputTokens", "outputTokens"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "network": { "enum": ["eip155:8453", "eip155:84532"] },
+    "asset": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+    "amountAtomic": { "type": "string", "pattern": "^\\d+$" },
+    "amountUsd": { "type": "string", "pattern": "^\\d+(?:\\.\\d+)?$" },
+    "model": { "type": "string" },
+    "pricingVersion": { "type": "string" },
+    "inputTokens": { "type": "integer", "minimum": 0 },
+    "cachedInputTokens": { "type": "integer", "minimum": 0 },
+    "outputTokens": { "type": "integer", "minimum": 0 },
+    "openaiRequestId": { "type": "string" }
+  }
+}

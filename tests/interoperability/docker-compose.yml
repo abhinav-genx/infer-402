@@ -1,0 +1,25 @@
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    ports: ["6379:6379"]
+
+  typescript-gateway:
+    build:
+      context: ../..
+      dockerfile: apps/typescript-gateway/Dockerfile
+    env_file: ../../.env
+    environment:
+      REDIS_URL: redis://redis:6379
+    ports: ["4021:4021"]
+    depends_on: [redis]
+
+  python-gateway:
+    build:
+      context: ../..
+      dockerfile: apps/python-gateway/Dockerfile
+    env_file: ../../.env
+    environment:
+      REDIS_URL: redis://redis:6379
+    ports: ["4022:4021"]
+    depends_on: [redis]

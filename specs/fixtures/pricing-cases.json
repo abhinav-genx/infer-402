@@ -1,0 +1,34 @@
+{
+  "table": {
+    "version": "conformance-v1",
+    "models": {
+      "example": {
+        "inputUsdPerMillion": "1",
+        "cachedInputUsdPerMillion": "0.1",
+        "outputUsdPerMillion": "5",
+        "providerMarkupBps": 1000,
+        "fixedFeeUsd": "0.001"
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "cached input and markup",
+      "model": "example",
+      "usage": { "input_tokens": 1000, "cached_input_tokens": 400, "output_tokens": 500 },
+      "maximumAtomic": "1000000",
+      "expectedAtomic": "4454",
+      "expectedUsd": "0.004454",
+      "capped": false
+    },
+    {
+      "name": "authorization cap",
+      "model": "example",
+      "usage": { "input_tokens": 1000000, "cached_input_tokens": 0, "output_tokens": 1000000 },
+      "maximumAtomic": "50000",
+      "expectedAtomic": "50000",
+      "expectedUsd": "0.050000",
+      "capped": true
+    }
+  ]
+}

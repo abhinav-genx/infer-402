@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/x402-openai/pricing.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "models"],
+  "properties": {
+    "version": { "type": "string", "minLength": 1 },
+    "models": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "inputUsdPerMillion",
+          "cachedInputUsdPerMillion",
+          "outputUsdPerMillion",
+          "providerMarkupBps",
+          "fixedFeeUsd"
+        ],
+        "properties": {
+          "inputUsdPerMillion": { "type": "string", "pattern": "^\\d+(?:\\.\\d+)?$" },
+          "cachedInputUsdPerMillion": { "type": "string", "pattern": "^\\d+(?:\\.\\d+)?$" },
+          "outputUsdPerMillion": { "type": "string", "pattern": "^\\d+(?:\\.\\d+)?$" },
+          "providerMarkupBps": { "type": "integer", "minimum": 0, "maximum": 100000 },
+          "fixedFeeUsd": { "type": "string", "pattern": "^\\d+(?:\\.\\d+)?$" }
+        }
+      }
+    }
+  }
+}

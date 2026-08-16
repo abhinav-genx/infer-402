@@ -1,0 +1,42 @@
+{
+  "name": "@infer402/client",
+  "version": "0.1.0",
+  "description": "OpenAI Responses client with x402 USDC payments on Base",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infer402/x402-openai.git",
+    "directory": "typescript/packages/client"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "LICENSE", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@x402/core": "^2.22.0",
+    "@x402/evm": "^2.22.0",
+    "@x402/extensions": "^2.22.0",
+    "@x402/fetch": "^2.22.0",
+    "@infer402/core": "0.1.0",
+    "openai": "^7.4.0",
+    "viem": "^2.46.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "sideEffects": false
+}

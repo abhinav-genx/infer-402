@@ -1,0 +1,33 @@
+{
+  "name": "x402-openai-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenAI Responses API calls paid in USDC through x402 on Base",
+  "license": "MIT",
+  "packageManager": "npm@11.9.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @infer402/core && npm run build -w @infer402/client && npm run build -w @infer402/server && npm run build -w @infer402/gateway",
+    "check": "npm run build && npm run test",
+    "dev": "npm run dev -w @infer402/gateway",
+    "start": "npm run start -w @infer402/gateway",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pack:check": "npm pack --dry-run -w @infer402/core && npm pack --dry-run -w @infer402/client && npm pack --dry-run -w @infer402/server"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.19.11",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}
