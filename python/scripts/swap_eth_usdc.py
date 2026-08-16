@@ -95,9 +95,7 @@ def main() -> None:
         raise SystemExit("Not enough ETH (need to keep some for gas).")
 
     quoter = w3.eth.contract(address=QUOTER, abi=QUOTER_ABI)
-    quoted_out = quoter.functions.quoteExactInputSingle(
-        (WETH, USDC, amount_in, FEE, 0)
-    ).call()[0]
+    quoted_out = quoter.functions.quoteExactInputSingle((WETH, USDC, amount_in, FEE, 0)).call()[0]
     min_out = quoted_out * 97 // 100  # 3% slippage guard
     print(f"Quote: ~{quoted_out / 1e6:.6f} USDC  | min accepted {min_out / 1e6:.6f} USDC")
 

@@ -216,9 +216,7 @@ def _replay_receive(messages: list[Message]) -> Receive:
     return receive
 
 
-def install_x402_middleware(
-    app: Any, config: GatewayConfig, facilitator_auth: Any = None
-) -> None:
+def install_x402_middleware(app: Any, config: GatewayConfig, facilitator_auth: Any = None) -> None:
     facilitator = HTTPFacilitatorClient(
         FacilitatorConfig(url=config.facilitator_url, auth_provider=facilitator_auth)
     )

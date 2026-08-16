@@ -586,4 +586,3 @@ def test_chat_provider_end_to_end() -> None:
     assert "messages" in call
     assert "provider" not in call  # the routing hint is stripped before forwarding
     assert facilitator_state.settle >= 1
-
